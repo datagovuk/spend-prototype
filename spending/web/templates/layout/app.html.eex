@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Find UK government data
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/public/images/opengraph-image.png?0.19.2">
+
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>" media="screen" rel="stylesheet" type="text/css">
+
+</head>
+
+  <body class="js-enabled">
+    <div id="skiplink-container">
+      <div>
+        <a href="#content" class="skiplink">Skip to main content</a>
+      </div>
+    </div>
+
+    <header role="banner" id="global-header" class="with-proposition" style="height: 60px;">
+      <div class="header-wrapper" style="height: 40px;">
+        <div class="header-global">
+          <div class="header-logo" style="margin-left: -30px">
+            <a href="/">Find UK Government Spend data</a>
+            <strong class="phase-tag">ALPHA</strong>
+          </div>
+        </div>
+
+        <div class="header-proposition" style="width: auto; float:right;">
+          <div class="content">
+              <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+  <main id="content" role="main">
+      <%= render @view_module, @view_template, assigns %>
+  </main>
+
+  <footer class="group js-footer" id="footer" role="contentinfo">
+    <div class="footer-wrapper">
+      <div class="footer-meta">
+        <div class="footer-meta-inner">
+            <div class="open-government-licence">
+              <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
+
+                <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+
+            </div>
+          </div>
+
+          <div class="copyright">
+            <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">&copy; Crown copyright</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="global-app-error" class="app-error hidden"></div>
+
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+
+    <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
+  </body>
+</html>
+

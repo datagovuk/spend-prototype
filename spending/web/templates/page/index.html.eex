@@ -1,0 +1,72 @@
+
+<div class="grid-row">
+  <div class="column-full">
+    <h1 class="heading-large">Government Spend Data</h1>
+    <p class="lede">
+      This dataset contains the aggregated spend-data from government departments in a single
+      dataset. Data is available from 2011 and is updated continuously every month.  To see
+      which departments are not currently up-to-date, check the <a href="/status">status page</a>
+    </p>
+  </div>
+</div>
+
+<div class="grid-row">
+  <div class="column-full filters">
+    <h1 class="heading-medium">Filters</h1>
+    <form>
+      <div class="column-one-half">
+        <label for="department">Department</label>
+        <select class="form-control" name='department'>
+          <option value="">All Departments</option>
+          <%= for dept <- @departments do %>
+            <option value="<%= dept %>" <%= if dept == @department do %>selected='true'<% end %>><%= dept %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="column-one-half">
+        <label for="department">Supplier</label>
+        <input type='text' class="form-control" name='supplier' value='<%= @supplier %>' style='background-color: #fff;'>
+      </div>
+      <input type='submit' class='button filter-update' value="Update">
+      <span style='float:right;'>
+        <span class="bold-small"><%= Number.Delimit.number_to_delimited(@total_entries, precision: 0) %></span> records
+      </span>
+    </form>
+  </div>
+  <div class="column-full data-container">
+    <a href="" style='float:right;margin-top: 4px;'>Download CSV</a>
+    <table>
+      <thead>
+        <th>Department</th>
+        <th>Entity</th>
+        <th>Date</th>
+        <th>Supplier</th>
+        <th>Amount</th>
+      </thead>
+      <tbody>
+        <%= for record <- @records do %>
+          <tr>
+            <td><%= record.department %></td>
+            <td><%= record.entity %></td>
+            <td><%= record.date %></td>
+            <td><%= record.supplier %></td>
+            <td class="numeric"><%= Number.Currency.number_to_currency(record.amount, unit: "") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+    <div class="column-full">
+        <%= for x <- 1 .. @total_pages do %>
+          <%= if x == @page_number do %>
+            <span class="page current-page"><%= @page_number %></span>
+          <% else %>
+            <span class="page">
+              <a href="?page=<%= x %>&department=<%= @department %>&supplier=<%= @supplier %>"><%= x %></a>
+            </span>
+          <% end %>
+        <% end %>
+    </div>
+
+</div>
