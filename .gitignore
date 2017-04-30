@@ -1,5 +1,6 @@
 
 # Byte-compiled / optimized / DLL files
+fetching/fetch_cache.sqlite
 .DS_Store
 __pycache__/
 *.py[cod]
