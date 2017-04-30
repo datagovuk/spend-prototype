@@ -8,18 +8,31 @@ defmodule Spending.PageController do
 
   def get_departments() do
     [
-      "Cabinet Office",
-      "Communities & Local Government",
-      "Department of Business, Innovation and Skills",
-      "Department for Business, Innovation and Skills",
-      "Department for Culture Media and Sport",
-      "Department for Education",
-      "DEPARTMENT FOR TRANSPORT",
-      "Department for Transport",
-      "Department For Transport",
-      "Department for Work and Pensions",
-      "DFID",
-      "HM Procurator General and Treasury Solicitor",
+     "Cabinet Office",
+     "Communities and Local Government",
+     "Department For Transport",
+     "Department for Business, Energy and Industrial Strategy",
+     "Department for Business, Innovation and Skills",
+     "Department for Culture Media and Sport",
+     "Department for Education",
+     "Department for International Development",
+     "Department for Transport",
+     "Department for Work and Pensions",
+     "Department of Health",
+     "Export Credits Guarantee Department",
+     "Government Actuary's Department",
+     "HM Land Registry",
+     "HM Procurator General and Treasury Solicitor",
+     "HM Revenue and Customs",
+     "HM Treasury",
+     "Home Office",
+     "Land Registry",
+     "Ministry of Defence",
+     "Ministry of Justice",
+     "Office of the Advocate General for Scotland",
+     "Ofqual",
+     "Scotland Office",
+     "UK Trade and Investment",
     ]
   end
 
@@ -28,6 +41,13 @@ defmodule Spending.PageController do
   def supplier_query(supplier, q) do
     from s in q,
     where: ilike(s.supplier, ^("#{supplier}%"))
+  end
+
+  def dept_query(:nil, q), do: q
+  def dept_query("", q), do: q
+  def dept_query(dept, q) do
+    from s in q,
+    where: ilike(s.department, ^dept)
   end
 
   def index(conn, %{}=params) do
