@@ -2,7 +2,7 @@ defmodule Spending.PageController do
   use Spending.Web, :controller
 
   alias Spending.Repo
-  alias Spending.SpendRecord
+  alias Spending.{SpendRecord, OrganisationStatus}
 
   import Ecto.Query, only: [from: 2]
 
@@ -26,7 +26,6 @@ defmodule Spending.PageController do
      "HM Revenue and Customs",
      "HM Treasury",
      "Home Office",
-     "Land Registry",
      "Ministry of Defence",
      "Ministry of Justice",
      "Office of the Advocate General for Scotland",
@@ -76,5 +75,20 @@ defmodule Spending.PageController do
       total_entries: page.total_entries,
       department: Map.get(params, "department"),
       supplier: Map.get(params, "supplier")
+  end
+
+  def status_key(r) do
+    "#{r.department}-#{to_string(r.year)}-#{to_string(r.month)}"
+  end
+
+  def status(conn, %{}=params) do
+
+
+    records = Repo.all(OrganisationStatus)
+    |> Enum.reduce(%{}, fn r, acc ->
+      Map.put(acc, status_key(r), r.present)
+    end)
+
+    render conn, "status.html", departments: get_departments(), records: records
   end
 end

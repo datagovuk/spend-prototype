@@ -2778,3 +2778,19 @@ a:focus {
   margin-left: 14px;
   margin-bottom: 12px;
 }
+
+.status-row {
+  margin-bottom: 20px;
+}
+.status-year {
+  border-top: solid 2px #ddd;
+  border-bottom: solid 2px #ddd;
+  background-color: #eee;
+}
+
+.month-table {
+  padding: 8px;
+}
+.month-table th {
+  text-align: center;
+}

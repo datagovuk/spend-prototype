@@ -44,8 +44,8 @@ if __name__ == '__main__':
     db.connect()
     try:
         print("+ Creating tables")
-        db.create_tables([OrganisationStatus])
-    #    print("+ Tables created")
+        #db.create_tables([OrganisationStatus])
+        print("+ Tables created")
     except ProgrammingError:
         print("- Tables already exist")
 
@@ -54,6 +54,7 @@ if __name__ == '__main__':
         if not record.department.strip():
             continue
 
+        db.begin()
         for year in range(2010, 2018):
             for month in range(1, 13):
                 print(f'{record.department} -> {month}/{year}')
@@ -63,15 +64,16 @@ if __name__ == '__main__':
                 WHERE
                 EXTRACT(MONTH FROM date) = {month} AND
                 EXTRACT(YEAR FROM date) = {year} AND
-                department='{record.department}';
+                department= %s;
                 '''
-                cursor = db.execute_sql(q)
+                cursor = db.execute_sql(q,[record.department])
                 res = cursor.fetchone()
+
                 OrganisationStatus.create(
                     department=record.department,
                     month=month,
                     year=year,
                     present=res[0] > 0
                 )
-
+        db.commit()
     db.close()

@@ -1,7 +1,7 @@
 defmodule Spending.OrganisationStatus do
   use Spending.Web, :model
 
-  schema "spendrecord" do
+  schema "organisationstatus" do
     field :department, :string
     field :year, :integer
     field :month, :integer

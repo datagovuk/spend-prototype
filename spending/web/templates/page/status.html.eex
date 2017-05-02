@@ -1,0 +1,55 @@
+
+<div class="grid-row">
+  <div class="column-full">
+    <h1 id='top' class="heading-large">Department Status</h1>
+  </div>
+</div>
+
+<div class="grid-row">
+  <div class="column-full">
+      <%= for department <- @departments do %>
+      <div class="column-half">
+        <a href="#<%= department %>"><%= department %></a>
+      </div>
+      <% end %>
+  </div>
+</div>
+
+<hr/>
+
+<%= for department <- @departments do %>
+<div class="grid-row status-row">
+  <div class="column-full">
+    <h1 id='<%= department %>'class="heading-medium"><%= department %></h1>
+    <a href="#top">Back to top</a>
+
+    <div class='month-table'>
+      <table>
+        <thead>
+            <th></th>
+          <%= for month <- 1..12 do %>
+            <th><%= month %></th>
+          <% end%>
+        </thead>
+        <tbody>
+          <%= for year <- 2010..2017 do %>
+            <tr>
+              <td><%= year %></td>
+              <%= for month <- 1..12 do %>
+                <td align="center">
+                    <%= if Map.get(@records, "#{department}-#{to_string(year)}-#{to_string(month)}") == true do %>
+                    <img height="20px" src="<%= static_path(@conn, "/images/tick.png") %>">
+                  <% else %>
+                    <img height="20px" src="<%= static_path(@conn, "/images/cross.png") %>">
+                  <% end %>
+                </td>
+              <% end%>
+            </tr>
+          <% end%>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<% end %>
