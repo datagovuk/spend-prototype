@@ -1306,7 +1306,7 @@ table {
 
 table th,
 table td {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "PT Mono", Arial, sans-serif;
   font-weight: 400;
   text-transform: none;
   font-size: 16px;
@@ -2758,14 +2758,14 @@ a:focus {
 
 
 .filters {
-  background-color: #ddd;
+  background-color: #E7A3A0;
   min-height: 100px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
 .data-container {
-  border: solid 4px #ddd;
+  border: solid 4px #E7A3A0;
   min-height: 600px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;

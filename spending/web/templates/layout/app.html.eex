@@ -10,7 +10,7 @@
   <meta property="og:image" content="/public/images/opengraph-image.png?0.19.2">
 
   <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>" media="screen" rel="stylesheet" type="text/css">
-
+  <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
 </head>
 
   <body class="js-enabled">
